@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-This is an experimental calling Neo4J bolt protocol from R, via NodeJS. 
+This is an experimental package calling Neo4J bolt protocol from R, via NodeJS. 
 
 Note that you'll need  to have NodeJS installed to run this. 
 
@@ -55,12 +55,24 @@ You can turn it to an R list with `{jsonlite}`:
 
 ```{r}
 library(magrittr)
-boltr::boltr_run(
+res <- boltr::boltr_run(
   url = 'bolt://localhost:7687', 
   user = 'neo4j', 
   password = 'password', 
   cypher = 'MATCH (tom {name: "Tom Hanks"}) RETURN tom;'
 ) %>% 
   jsonlite::fromJSON()
+```
+
+Output:
+
+```{r}
+res$records
+```
+
+Stats:
+
+```{r}
+res$summary$updateStatistics$`_stats`
 ```
 
