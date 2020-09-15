@@ -1,0 +1,66 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%", 
+  comment = ""
+)
+```
+
+# boltr
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+This is an experimental calling Neo4J bolt protocol from R, via NodeJS. 
+
+Note that you'll need  to have NodeJS installed to run this. 
+
+Please do not use for now, this is still in an experimental phase.
+
+## Install 
+
+``` r
+remotes::install_github("neo4r/boltr")
+```
+
+## Use
+
+The first time you will use this package, you will need to install the Node infrastructure: 
+
+```{r eval = FALSE}
+boltr::boltr_npm_install()
+```
+
+Then, you can call NodeJS with:
+
+```{r}
+boltr::boltr_run(
+  url = 'bolt://localhost:7687', 
+  user = 'neo4j', 
+  password = 'password', 
+  cypher = 'MATCH (tom {name: "Tom Hanks"}) RETURN tom;'
+)
+```
+
+The output is the raw, unparse JSON. 
+You can turn it to an R list with `{jsonlite}`:
+
+```{r}
+library(magrittr)
+boltr::boltr_run(
+  url = 'bolt://localhost:7687', 
+  user = 'neo4j', 
+  password = 'password', 
+  cypher = 'MATCH (tom {name: "Tom Hanks"}) RETURN tom;'
+) %>% 
+  jsonlite::fromJSON()
+```
+

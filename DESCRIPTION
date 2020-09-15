@@ -1,0 +1,21 @@
+Package: boltr
+Title: Using the bolt Protocol through NodeJS
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Colin",
+           family = "Fay",
+           role = c("aut", "cre"),
+           email = "contact@colinfay.me",
+           comment = c(ORCID = "0000-0001-7343-1846"))
+Description: Using the bolt Protocol through NodeJS.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.0
+Imports: 
+    processx,
+    yesno,
+    cordes (>= 0.0.0.9000)
+Remotes:  
+    colinfay/cordes
